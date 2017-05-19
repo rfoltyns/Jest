@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * The bulk API makes it possible to perform many index/delete operations in a
@@ -157,7 +158,7 @@ public class Bulk extends AbstractAction<BulkResult> {
     }
 
     public static class Builder extends GenericResultAbstractAction.Builder<Bulk, Builder> {
-        private List<BulkableAction> actions = new LinkedList<BulkableAction>();
+        private Collection<BulkableAction> actions = new ConcurrentLinkedQueue<BulkableAction>();
         private String defaultIndex;
         private String defaultType;
 
